@@ -6,6 +6,8 @@ A responsive storefront concept for considered homewares and everyday objects. B
 
 Developer profile: [j06352811-cell](https://github.com/j06352811-cell) · [Source repository](https://github.com/j06352811-cell/MY-PORTFOLIO-WEBSITE-)
 
+Live demo: [common-goods-storefront.vercel.app](https://common-goods-storefront.vercel.app)
+
 ## Features
 
 - Responsive layouts for mobile, tablet, and desktop
@@ -56,7 +58,7 @@ tests/
 
 ## Deploy
 
-Import the [GitHub repository](https://github.com/j06352811-cell/MY-PORTFOLIO-WEBSITE-) into Vercel or Netlify. Use `npm run build` as the build command and `dist` as the output directory. GitHub Actions runs catalog tests and a production build on pushes and pull requests to `main`. The checkout is a frontend demo: it does not collect payment or send orders to a server.
+The [GitHub repository](https://github.com/j06352811-cell/MY-PORTFOLIO-WEBSITE-) is connected to Vercel. Pushes to `main` deploy to the [production demo](https://common-goods-storefront.vercel.app), and GitHub Actions runs catalog tests and a production build on pushes and pull requests. Vercel uses `npm run build` and `dist` as the output directory. The checkout is a frontend demo: it does not collect payment or send orders to a server.
 
 ## What I Practiced
 
