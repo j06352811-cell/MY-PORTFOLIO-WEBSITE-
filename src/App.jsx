@@ -14,6 +14,7 @@ import {
   X,
 } from 'lucide-react';
 import { categories, products } from './data/products.js';
+import { getVisibleProducts } from './data/catalog.js';
 
 const currency = new Intl.NumberFormat('en-US', {
   style: 'currency',
@@ -87,18 +88,13 @@ function App() {
     localStorage.setItem('common-goods-saved', JSON.stringify(saved));
   }, [saved]);
 
-  const visibleProducts = useMemo(() => {
-    const query = search.trim().toLowerCase();
-    const filtered = products.filter((product) => {
-      const categoryMatch = activeCategory === 'All pieces' || product.category === activeCategory;
-      const searchMatch = !query || `${product.name} ${product.category} ${product.color}`.toLowerCase().includes(query);
-      const savedMatch = !savedOnly || saved.includes(product.id);
-      return categoryMatch && searchMatch && savedMatch;
-    });
-    if (sortBy === 'price-low') return [...filtered].sort((a, b) => a.price - b.price);
-    if (sortBy === 'price-high') return [...filtered].sort((a, b) => b.price - a.price);
-    return filtered;
-  }, [activeCategory, saved, savedOnly, search, sortBy]);
+  const visibleProducts = useMemo(() => getVisibleProducts(products, {
+    category: activeCategory,
+    search,
+    savedIds: saved,
+    savedOnly,
+    sortBy,
+  }), [activeCategory, saved, savedOnly, search, sortBy]);
 
   const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
   const subtotal = cart.reduce((total, item) => total + item.price * item.quantity, 0);

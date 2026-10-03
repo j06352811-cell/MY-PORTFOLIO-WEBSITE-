@@ -1,8 +1,10 @@
 # Common Goods Storefront
 
+[![CI](https://github.com/j06352811-cell/MY-PORTFOLIO-WEBSITE-/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/j06352811-cell/MY-PORTFOLIO-WEBSITE-/actions/workflows/ci.yml)
+
 A responsive storefront concept for considered homewares and everyday objects. Built as a frontend portfolio project to demonstrate component-driven UI, interactive product discovery, and shopping-cart state.
 
-Developer profile: [j06352811-cell](https://github.com/j06352811-cell)
+Developer profile: [j06352811-cell](https://github.com/j06352811-cell) · [Source repository](https://github.com/j06352811-cell/MY-PORTFOLIO-WEBSITE-)
 
 ## Features
 
@@ -34,6 +36,7 @@ npm run dev
 Open the local URL printed by Vite. To verify a production build:
 
 ```bash
+npm test
 npm run build
 npm run preview
 ```
@@ -43,14 +46,17 @@ npm run preview
 ```text
 src/
   data/products.js   Product catalog and categories
+  data/catalog.js    Search, category, wishlist, and sort rules
   App.jsx            Storefront UI and interaction state
   main.jsx           React entry point
   styles.css         Responsive design system and component styles
+tests/
+  catalog.test.js    Catalog behavior tests
 ```
 
 ## Deploy
 
-Push this repository to GitHub, then import it into Vercel or Netlify. Use `npm run build` as the build command and `dist` as the output directory. The project is a frontend demo: checkout does not collect payment or send an order to a server.
+Import the [GitHub repository](https://github.com/j06352811-cell/MY-PORTFOLIO-WEBSITE-) into Vercel or Netlify. Use `npm run build` as the build command and `dist` as the output directory. GitHub Actions runs catalog tests and a production build on pushes and pull requests to `main`. The checkout is a frontend demo: it does not collect payment or send orders to a server.
 
 ## What I Practiced
 
@@ -59,6 +65,7 @@ I practiced breaking a storefront into reusable React components, deriving filte
 ## Interview Walkthrough
 
 - `ProductCard` receives product data and interaction handlers rather than owning catalog state.
-- `visibleProducts` is derived from the selected category, search query, and sort choice with `useMemo`.
+- `getVisibleProducts` keeps catalog rules independent from the view and directly testable.
+- `visibleProducts` is derived from the selected category, search query, wishlist, and sort choice with `useMemo`.
 - Cart changes use functional state updates so rapid quantity changes stay consistent.
 - `localStorage` restores the bag between visits; the checkout intentionally remains a demo and would need a trusted payment provider and backend for production.
